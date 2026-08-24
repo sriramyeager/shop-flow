@@ -55,8 +55,8 @@ pipeline {
         stage('Tag Images') {
             steps {
                 sh '''
-                    docker tag shopflow-backend:latest ${BACKEND_IMAGE}:latest
-                    docker tag shopflow-frontend:latest ${FRONTEND_IMAGE}:latest
+                    docker tag shopflow-backend:latest ${BACKEND_IMAGE}:${BUILD_NUMBER}
+                    docker tag shopflow-frontend:latest ${FRONTEND_IMAGE}:${BUILD_NUMBER}
                 '''
             }
         }
@@ -64,7 +64,7 @@ pipeline {
         stage('Push Backend') {
             steps {
                 sh '''
-                    docker push ${BACKEND_IMAGE}:latest
+                    docker push ${BACKEND_IMAGE}:${BUILD_NUMBER}
                 '''
             }
         }
@@ -72,7 +72,7 @@ pipeline {
         stage('Push Frontend') {
             steps {
                 sh '''
-                    docker push ${FRONTEND_IMAGE}:latest
+                    docker push ${FRONTEND_IMAGE}:${BUILD_NUMBER}
                 '''
             }
         }
