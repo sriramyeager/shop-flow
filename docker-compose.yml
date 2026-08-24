@@ -1,0 +1,74 @@
+services:
+
+  mysql:
+
+    image: mysql:8.0
+
+    container_name: shopflow-mysql
+
+    environment:
+
+      MYSQL_ROOT_PASSWORD: rootpassword
+
+      MYSQL_DATABASE: shopflow
+
+      MYSQL_USER: shopflow
+
+      MYSQL_PASSWORD: shopflowpassword
+
+    volumes:
+
+      - mysql_data:/var/lib/mysql
+
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+    ports:
+
+      - "3306:3306"
+
+
+  backend:
+
+    build:
+      context: ./backend
+
+    container_name: shopflow-backend
+
+    environment:
+
+      DB_HOST: mysql
+
+      DB_USER: shopflow
+
+      DB_PASSWORD: shopflowpassword
+
+      DB_NAME: shopflow
+
+    ports:
+
+      - "5000:5000"
+
+    depends_on:
+
+      - mysql
+
+
+  frontend:
+
+    build:
+      context: ./frontend
+
+    container_name: shopflow-frontend
+
+    ports:
+
+      - "8081:80"
+
+    depends_on:
+
+      - backend
+
+
+volumes:
+
+  mysql_data:

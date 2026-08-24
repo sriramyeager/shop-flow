@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ShopFlow</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>ShopFlow</h1>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#products">Products</a>
+            <a href="#cart">Cart 🛒 <span id="cart-count">0</span></a>
+        </nav>
+    </header>
+
+
+    <section class="hero">
+
+        <h2>Welcome to ShopFlow</h2>
+
+        <p>
+            Discover great products at amazing prices.
+        </p>
+
+        <button onclick="loadProducts()">
+            Shop Now
+        </button>
+
+    </section>
+
+
+    <section id="products">
+
+        <h2>Products</h2>
+
+        <div id="product-container" class="products">
+
+            <p>Loading products...</p>
+
+        </div>
+
+    </section>
+
+
+    <section id="cart">
+
+        <h2>Your Cart</h2>
+
+        <div id="cart-container">
+
+            <p>Your cart is empty.</p>
+
+        </div>
+
+        <h3>
+            Total: ₹<span id="cart-total">0</span>
+        </h3>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
